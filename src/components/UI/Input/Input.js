@@ -1,4 +1,5 @@
 import React from 'react';
+import { capitalise } from '../../../utils/form';
 
 import classes from './Input.css';
 
@@ -6,10 +7,12 @@ const input = (props) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
     
-    if(props.invalid && props.shouldValidate) {
+    let validationError = null;
+    if(props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
+        validationError = <p>Please enter a valid {props.label}!</p>;
     }
-    
+
     switch (props.elementType) {
         case ('input'):
             inputElement = <input
@@ -48,10 +51,12 @@ const input = (props) => {
                 onChange={props.changed}
             />;
     }
+
     return (
         <div className={classes.Input}>
-            <label className={classes.Label}>{props.label}</label>
+            <label className={classes.Label}>{capitalise(props.label)}</label>
             {inputElement}
+            {validationError}
         </div>
     )
 }
