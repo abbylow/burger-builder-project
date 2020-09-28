@@ -63,7 +63,6 @@ export const auth = (email, password, isSignedUp) => {
                 // can also store refreshToken and submit every HTTP request with the refreshToken to exchange a newer token for security purpose
             })
             .catch(err => {
-                console.log(err.response)
                 dispatch(authFailed(err.response.data.error));
             })
     };
