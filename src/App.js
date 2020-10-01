@@ -13,9 +13,11 @@ const Checkout = React.lazy(() => import('./containers/Checkout/Checkout'));
 const Orders = React.lazy(() => import('./containers/Orders/Orders'));
 
 const app = props => {
+  const { onTryAutoLogin } = props;
+
   useEffect(() => {
-    props.onTryAutoLogin();
-  }, []);
+    onTryAutoLogin();
+  }, [onTryAutoLogin]);
 
   let routes = (
     <Switch>
